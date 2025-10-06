@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XiroAdmin</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>AControl</h2>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li class="active"><a href="#">Домашняя страница</a></li>
+                <li><a href="#">Роли</a></li>
+                <li><a href="#">Пользователи</a></li>
+                <li><a href="#">Логи</a></li>
+                <li><a href="#">Активные доступы</a></li>
+                <li><a href="#">Все доступы</a></li>
+                <li><a href="#">Настройки</a></li>
+                <li><a href="#">Информаци о AControl</a></li>
+            </ul>
+        </nav>
+    </aside>
 
+    <main class="content">
+        <h1 class="page-title">Панель администратора</h1>
+
+        <!-- Статистика вверху -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">Роли</div>
+                <div class="stat-label">Добавлять/Редактировать</div>
+                <a href="#" class="more-link">Подробнее</a>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Пользователи</div>
+                <div class="stat-label">Добавлять/Редактировать</div>
+                <a href="#" class="more-link">Подробнее</a>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Логи</div>
+                <div class="stat-label">Смотреть</div>
+                <a href="#" class="more-link">Подробнее</a>
+            </div>
+        </div>
+        <div class="widgets-grid">
+            <div class="widget">
+                <div class="widget-header">
+                    <span>Список активных доступов</span>
+                    <a href="#" class="more-link">Подробнее</a>
+                </div>
+                <div class="widget-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Номер</th>
+                                <th>роль</th>
+                                <th>дата выдачи доступа</th>
+                                <th>серийный номер контроллера</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                            <tr>
+                                <td>435-691-066</td>
+                                <td>инженер</td>
+                                <td>10.10.2025</td>
+                                <td>100-199-024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="widget-header">
+                    <span>Общий список доступов</span>
+                    <a href="#" class="more-link">Подробнее</a>
+                </div>
+                <div class="widget-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Номер</th>
+                                <th>роль</th>
+                                <th>дата выдачи доступа</th>
+                                <th>серийный номер контроллера</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                            <tr>
+                                <td>435-691-066</td>
+                                <td>инженер</td>
+                                <td>10.10.2025</td>
+                                <td>100-199-024</td>
+                            </tr>
+                            <tr>
+                                <td>435-691-066</td>
+                                <td>инженер</td>
+                                <td>10.10.2025</td>
+                                <td>100-199-024</td>
+                            </tr>
+                            <tr>
+                                <td>435-691-066</td>
+                                <td>инженер</td>
+                                <td>10.10.2025</td>
+                                <td>100-199-024</td>
+                            </tr>
+                            <tr>
+                                <td>435-691-066</td>
+                                <td>инженер</td>
+                                <td>10.10.2025</td>
+                                <td>100-199-024</td>
+                            </tr>
+                            <tr>
+                                <td>435-691-066</td>
+                                <td>инженер</td>
+                                <td>10.10.2025</td>
+                                <td>100-199-024</td>
+                            </tr>
+                            <tr>
+                                <td>435-691-066</td>
+                                <td>инженер</td>
+                                <td>10.10.2025</td>
+                                <td>100-199-024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.stat-card, .widget');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+
+                setTimeout(() => {
+                    element.style.transition = 'all 0.5s ease';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            document.querySelectorAll('.table tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f8f9fa';
+                    this.style.transition = 'background-color 0.3s ease';
+                });
+
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+
+            document.querySelectorAll('.menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.menu li').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.parentElement.classList.add('active');
+                });
+            });
+
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            document.querySelectorAll('.widget').forEach(widget => {
+                widget.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+
+                widget.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
