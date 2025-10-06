@@ -1,1 +1,2 @@
-# RadioHackathon2.0
+# Prosoft-RadioHACK
+Наше решение кейса от компании Прософт-Системы
